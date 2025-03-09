@@ -1,18 +1,15 @@
-function startTime() {
-    const today = new Date();
-    let h = today.getHours();
-    let m = today.getMinutes();
-    let s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
-    setTimeout(startTime, 1000);
+function startTime(time) {
+    document.getElementById('txt').innerHTML =  time.value;
+    if(time.value>="00:00"&&time.value<"12:00"){
+        document.getElementById("greet").innerHTML= "Good Morning";
+    }if(time.value>"11:59"&&time.value<"18:00"){
+        document.getElementById("greet").innerHTML= "Good Afternoon";
+    }
 }
   
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-
 form = document.getElementById("form");
-document.addEventListener("load", startTime());
+time = document.getElementById("time");
+form.addEventListener("submit", function(event){
+    event.preventDefault();
+    startTime(time);
+})
